@@ -10,6 +10,8 @@
     //? probably have to do this in the for loop
 //TODO: add functionality to the button
 
+//!CSS has a class for time block, row, hour, past, present, future, savebtn
+
 /*
 *pseudo-code for the for loop i reference 
 *for (var i = 0; i < 9; i++){
@@ -21,3 +23,45 @@
 *       
 *}
 */
+
+var dt = new Date();
+var time = dt.getHours();
+console.log(time);
+
+var containerEl = $(".container");
+
+var unorderedListEl = $("<ul>");
+unorderedListEl.attr("class", "time-block");
+unorderedListEl.text("unorderedList");
+
+
+var saveBtnEl = $("<button>");
+saveBtnEl.attr("class", "saveBtn");
+
+
+//*this creates the list elements for non-12 hour time, compares it against the current time, and then adds classes past/present/future
+var hourCountPastTwelve = 0;
+for (var i = 9; i < 18; i++){
+
+    var listElement = $("<li>");
+    listElement.addClass("row");
+    var listTextEl = $(listElement.text());
+
+    i > time ? listElement.addClass("future") :
+    i == time ? listElement.addClass("present") :
+    i < time ? listElement.addClass("past") : i = 10 
+
+    if (i > 12){
+        hourCountPastTwelve++;
+        listElement.text("The hour is " + hourCountPastTwelve);
+    }else { listElement.text("The hour is " + i); }
+
+
+    unorderedListEl.append(listElement);
+};
+
+
+
+containerEl.append(unorderedListEl);
+
+
