@@ -31,12 +31,10 @@ console.log(time);
 var containerEl = $(".container");
 
 var unorderedListEl = $("<ul>");
-unorderedListEl.attr("class", "time-block");
 unorderedListEl.text("unorderedList");
 
 
-var saveBtnEl = $("<button>");
-saveBtnEl.attr("class", "saveBtn");
+
 
 
 //*this creates the list elements for non-12 hour time, compares it against the current time, and then adds classes past/present/future
@@ -45,6 +43,12 @@ for (var i = 9; i < 18; i++){
 
     var listElement = $("<li>");
     listElement.addClass("row");
+    listElement.addClass("time-block");
+    
+    var saveBtnEl = $("<button>");
+    saveBtnEl.addClass("saveBtn");
+    saveBtnEl.text("Click here to save");
+
     var listTextEl = $(listElement.text());
 
     i > time ? listElement.addClass("future") :
@@ -56,9 +60,10 @@ for (var i = 9; i < 18; i++){
         listElement.text("The hour is " + hourCountPastTwelve);
     }else { listElement.text("The hour is " + i); }
 
-
+    listElement.append(saveBtnEl);
     unorderedListEl.append(listElement);
 };
+
 
 
 
