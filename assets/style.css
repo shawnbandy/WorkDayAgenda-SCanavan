@@ -73,3 +73,12 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+
+::placeholder {
+  color: black;
+}
+
+#btn {
+  display: flex;
+  align-items: center;
+}

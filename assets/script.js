@@ -27,11 +27,14 @@
 var dt = new Date();
 var time = dt.getHours();
 
+
+
+
 var containerEl = $(".container");
 
 var unorderedListEl = $("<ul>");
 unorderedListEl.addClass("time-block");
-unorderedListEl.text("unorderedList");
+unorderedListEl.text("text")
 
 var dataNumber = 0;
 
@@ -72,9 +75,12 @@ for (var i = 9; i < 18; i++){
     formEl.attr("style", "background-color: transparent; border: none; text-align: center;");
     
     //*checks to see if there localstorage for the div, and then ets it accordingly
-    if (localStorage.getItem(dataNumber) == null){
-        formEl.attr("placeholder", "text");
-    }else formEl.attr("placeholder", localStorage.getItem(dataNumber));
+    if (localStorage.getItem(dataNumber) == null ||
+        localStorage.getItem(dataNumber) == ""){
+        formEl.attr("placeholder", "Click here to type.");
+    }else {
+        formEl.attr("placeholder", localStorage.getItem(dataNumber));
+    }
     
     
     //*savebutton element
@@ -109,6 +115,7 @@ var saveBtn = $(".saveBtn");
 //*this function fires on button click, which get's the div's data number, then assigns the localstorage to that datanumber for recalling
 //*second thing that is done, is the value of the input is stored in localstorage
 saveBtn.on("click", function(event){
+
     var target = $(event.target);
     var parent = target.parent();
     var dataType = parent.attr("data-number")
@@ -116,9 +123,6 @@ saveBtn.on("click", function(event){
     
     localStorage.setItem(dataType, test);
 });
-
-
-$("#clear").on("click", function(){localStorage.clear()})
 
 
 
