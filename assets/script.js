@@ -26,7 +26,6 @@
 
 var dt = new Date();
 var time = dt.getHours();
-console.log(time);
 
 var containerEl = $(".container");
 
@@ -34,26 +33,32 @@ var unorderedListEl = $("<ul>");
 unorderedListEl.addClass("time-block");
 unorderedListEl.text("unorderedList");
 
-
-
+var dataNumber = 0;
 
 
 //*this creates the list elements for non-12 hour time, compares it against the current time, and then adds classes past/present/future
 var hourCountPastTwelve = 0;
 for (var i = 9; i < 18; i++){
 
+    //*creates div and gives it the respective data number
     var divHolder = $("<div>");
     divHolder.addClass("row");
+    divHolder.attr("data-number", dataNumber);
 
+    //*creates the hour element, sets the width
     var pHourEl = $("<p>");
     pHourEl.addClass("hour");
     pHourEl.attr("style", "width: 10%");
 
+    //*creates the list element, sets the time class in comparison to local time
     var listElement = $("<li>");
     listElement.attr("style", "width: 80%");
     i > time ? listElement.addClass("future") :
     i == time ? listElement.addClass("present") : listElement.addClass("past"); 
 
+
+    //*throwing this in there to make it 12 hour time and not 24 hour time
+    //!may delete later after finding out more about moment.js
     if (i > 12){
         hourCountPastTwelve++;
         pHourEl.text(hourCountPastTwelve + "PM");
@@ -62,28 +67,37 @@ for (var i = 9; i < 18; i++){
     }else { pHourEl.text(i + "AM"); }
     
 
-
-    var DescriptionEl = $("<p1>")
-    DescriptionEl.addClass("description");
-    DescriptionEl.text("test");
-
+    //*creates the input type to type in
     var formEl = $("<input>")
     formEl.attr("style", "background-color: transparent; border: none; text-align: center;");
-    formEl.attr("placeholder", "text");
     
+    //*checks to see if there localstorage for the div, and then ets it accordingly
+    if (localStorage.getItem(dataNumber) == null){
+        formEl.attr("placeholder", "text");
+    }else formEl.attr("placeholder", localStorage.getItem(dataNumber));
+    
+    
+    //*savebutton element
     var saveBtnEl = $("<button>");
     saveBtnEl.addClass("saveBtn");
-    saveBtnEl.attr("style", "width: 10%")
+    saveBtnEl.attr("style", "width: 10%");
+    saveBtnEl.attr("data-number", dataNumber);
     saveBtnEl.text("💾");
 
+
+    //*appends the form to the list, then appends the hour, list, and savebtn to the div
     listElement.append(formEl);
     divHolder.append(pHourEl);
     divHolder.append(listElement);
     divHolder.append(saveBtnEl);
 
+    //*finally, appends everything to the unordered list created outside the loop
     unorderedListEl.append(divHolder);
 
+    //*increases dataNumber so no div has the same one
+    dataNumber++;
 };
+
 
 
 containerEl.append(unorderedListEl);
@@ -91,13 +105,20 @@ containerEl.append(unorderedListEl);
 
 var saveBtn = $(".saveBtn");
 
-saveBtn.on("click", function(){
-    console.log("go");
-    var inputText = saveBtn.parent();
-    console.log(inputText)
+//*going to be honest, didn't think this would work at all
+//*this function fires on button click, which get's the div's data number, then assigns the localstorage to that datanumber for recalling
+//*second thing that is done, is the value of the input is stored in localstorage
+saveBtn.on("click", function(event){
+    var target = $(event.target);
+    var parent = target.parent();
+    var dataType = parent.attr("data-number")
+    var test = parent.children("li").children().val()
+    
+    localStorage.setItem(dataType, test);
 });
 
 
+$("#clear").on("click", function(){localStorage.clear()})
 
 
 
