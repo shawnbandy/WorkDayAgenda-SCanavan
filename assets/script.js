@@ -31,6 +31,7 @@ console.log(time);
 var containerEl = $(".container");
 
 var unorderedListEl = $("<ul>");
+unorderedListEl.addClass("time-block");
 unorderedListEl.text("unorderedList");
 
 
@@ -56,18 +57,26 @@ for (var i = 9; i < 18; i++){
     if (i > 12){
         hourCountPastTwelve++;
         pHourEl.text(hourCountPastTwelve + "PM");
+    }else if (i == 12){
+        pHourEl.text(i + "PM");
     }else { pHourEl.text(i + "AM"); }
+    
 
-    var pDescriptionEl = $("<p1>")
-    pDescriptionEl.addClass("description");
-    pDescriptionEl.text("test");
+
+    var DescriptionEl = $("<p1>")
+    DescriptionEl.addClass("description");
+    DescriptionEl.text("test");
+
+    var formEl = $("<input>")
+    formEl.attr("style", "background-color: transparent; border: none; text-align: center;");
+    formEl.attr("placeholder", "text");
     
     var saveBtnEl = $("<button>");
     saveBtnEl.addClass("saveBtn");
     saveBtnEl.attr("style", "width: 10%")
-    saveBtnEl.text("Click here to save");
+    saveBtnEl.text("💾");
 
-    listElement.append(pDescriptionEl);
+    listElement.append(formEl);
     divHolder.append(pHourEl);
     divHolder.append(listElement);
     divHolder.append(saveBtnEl);
@@ -77,8 +86,18 @@ for (var i = 9; i < 18; i++){
 };
 
 
-
-
 containerEl.append(unorderedListEl);
+
+
+var saveBtn = $(".saveBtn");
+
+saveBtn.on("click", function(){
+    console.log("go");
+    var inputText = saveBtn.parent();
+    console.log(inputText)
+});
+
+
+
 
 
