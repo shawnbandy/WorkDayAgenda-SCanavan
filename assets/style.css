@@ -23,7 +23,6 @@ textarea {
 
 .description {
   white-space: pre-wrap;
-  display: flex;
 }
 
 .time-block {
@@ -38,9 +37,13 @@ textarea {
 }
 
 .hour {
+  display: flex;
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  text-align: center; /* *added these and the display flex to make it look nicer */
+  align-items: center;
+  justify-content: center;
 }
 
 .past {

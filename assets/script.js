@@ -41,27 +41,39 @@ unorderedListEl.text("unorderedList");
 var hourCountPastTwelve = 0;
 for (var i = 9; i < 18; i++){
 
+    var divHolder = $("<div>");
+    divHolder.addClass("row");
+
+    var pHourEl = $("<p>");
+    pHourEl.addClass("hour");
+    pHourEl.attr("style", "width: 10%");
+
     var listElement = $("<li>");
-    listElement.addClass("row");
-    listElement.addClass("time-block");
-    
-    var saveBtnEl = $("<button>");
-    saveBtnEl.addClass("saveBtn");
-    saveBtnEl.text("Click here to save");
-
-    var listTextEl = $(listElement.text());
-
+    listElement.attr("style", "width: 80%");
     i > time ? listElement.addClass("future") :
-    i == time ? listElement.addClass("present") :
-    i < time ? listElement.addClass("past") : i = 10 
+    i == time ? listElement.addClass("present") : listElement.addClass("past"); 
 
     if (i > 12){
         hourCountPastTwelve++;
-        listElement.text("The hour is " + hourCountPastTwelve);
-    }else { listElement.text("The hour is " + i); }
+        pHourEl.text(hourCountPastTwelve + "PM");
+    }else { pHourEl.text(i + "AM"); }
 
-    listElement.append(saveBtnEl);
-    unorderedListEl.append(listElement);
+    var pDescriptionEl = $("<p1>")
+    pDescriptionEl.addClass("description");
+    pDescriptionEl.text("test");
+    
+    var saveBtnEl = $("<button>");
+    saveBtnEl.addClass("saveBtn");
+    saveBtnEl.attr("style", "width: 10%")
+    saveBtnEl.text("Click here to save");
+
+    listElement.append(pDescriptionEl);
+    divHolder.append(pHourEl);
+    divHolder.append(listElement);
+    divHolder.append(saveBtnEl);
+
+    unorderedListEl.append(divHolder);
+
 };
 
 
