@@ -14,6 +14,10 @@ These were accomplished by:
 4. Setting the time block as an input element to allow user to change the text
 5. Having an on-click function for the save button to set the localStorage of the input element value to user's input, which is called upon during time block creation
 
+Application Description: This application creates a daily work planner, with the date displayed on the page. The user is able to edit their daily tasks and save it, which persists throughout page refreshes until the user hit the reset button at the bottom of the page. Each time block is color coded green, red, or gray if that time block is in the future, current, or the past respectively, and changes its color accordingly. 
+
 Link to website: 
 
-Link to REPO:
+Link to REPO: https://github.com/shawnbandy/WorkDayAgenda-SCanavan
+
+IMG:
