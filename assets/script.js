@@ -54,14 +54,14 @@ for (var i = 9; i < 18; i++){
     pHourEl.attr("style", "width: 10%");
 
     //*creates the list element, sets the time class in comparison to local time
-    var listElement = $("<li>");
-    listElement.attr("style", "width: 80%");
-    i > time ? listElement.addClass("future") :
-    i == time ? listElement.addClass("present") : listElement.addClass("past"); 
+    // var listElement = $("<li>");
+    // listElement.attr("style", "width: 80%");
+    // i > time ? listElement.addClass("future") :
+    // i == time ? listElement.addClass("present") : listElement.addClass("past"); 
 
 
-    //*throwing this in there to make it 12 hour time and not 24 hour time
-    //!may delete later after finding out more about moment.js
+    // //*throwing this in there to make it 12 hour time and not 24 hour time
+    // //!may delete later after finding out more about moment.js
     if (i > 12){
         hourCountPastTwelve++;
         pHourEl.text(hourCountPastTwelve + "PM");
@@ -72,7 +72,11 @@ for (var i = 9; i < 18; i++){
 
     //*creates the input type to type in
     var formEl = $("<input>")
-    formEl.attr("style", "background-color: transparent; border: none; text-align: center;");
+    formEl.attr("style", "border: none; width: 80%; height: 100%; color: black; padding: 0; margin: 0;");
+    
+    i > time ? formEl.addClass("future") :
+    i == time ? formEl.addClass("present") : formEl.addClass("past"); 
+
     
     //*checks to see if there localstorage for the div, and then ets it accordingly
     if (localStorage.getItem(dataNumber) == null ||
@@ -92,9 +96,9 @@ for (var i = 9; i < 18; i++){
 
 
     //*appends the form to the list, then appends the hour, list, and savebtn to the div
-    listElement.append(formEl);
+    // listElement.append(formEl);
     divHolder.append(pHourEl);
-    divHolder.append(listElement);
+    divHolder.append(formEl); //!changed from listEl
     divHolder.append(saveBtnEl);
 
     //*finally, appends everything to the unordered list created outside the loop
@@ -119,7 +123,7 @@ saveBtn.on("click", function(event){
     var target = $(event.target);
     var parent = target.parent();
     var dataType = parent.attr("data-number")
-    var test = parent.children("li").children().val()
+    var test = parent.children("input").val()
     
     localStorage.setItem(dataType, test);
 });
