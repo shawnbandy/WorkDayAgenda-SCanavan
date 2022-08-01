@@ -25,7 +25,14 @@
 */
 
 var dt = new Date();
+
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 var time = dt.getHours();
+
+
+var timeDisplay = $("#currentDay");
+timeDisplay.text(months[dt.getMonth()] + " " + dt.getDate());
 
 
 
@@ -34,12 +41,10 @@ var containerEl = $(".container");
 
 var unorderedListEl = $("<ul>");
 unorderedListEl.addClass("time-block");
-unorderedListEl.text("text")
-
 var dataNumber = 0;
 
 
-//*this creates the list elements for non-12 hour time, compares it against the current time, and then adds classes past/present/future
+//*this creates the elements for non-12 hour time, compares it against the current time, and then adds classes past/present/future
 var hourCountPastTwelve = 0;
 for (var i = 9; i < 18; i++){
 
@@ -52,13 +57,6 @@ for (var i = 9; i < 18; i++){
     var pHourEl = $("<p>");
     pHourEl.addClass("hour");
     pHourEl.attr("style", "width: 10%");
-
-    //*creates the list element, sets the time class in comparison to local time
-    // var listElement = $("<li>");
-    // listElement.attr("style", "width: 80%");
-    // i > time ? listElement.addClass("future") :
-    // i == time ? listElement.addClass("present") : listElement.addClass("past"); 
-
 
     // //*throwing this in there to make it 12 hour time and not 24 hour time
     // //!may delete later after finding out more about moment.js
@@ -96,7 +94,6 @@ for (var i = 9; i < 18; i++){
 
 
     //*appends the form to the list, then appends the hour, list, and savebtn to the div
-    // listElement.append(formEl);
     divHolder.append(pHourEl);
     divHolder.append(formEl); //!changed from listEl
     divHolder.append(saveBtnEl);
@@ -126,6 +123,13 @@ saveBtn.on("click", function(event){
     var test = parent.children("input").val()
     
     localStorage.setItem(dataType, test);
+});
+
+var resetBtn = $("#reset");
+
+resetBtn.on("click", function (){
+    localStorage.clear();
+    location = location;
 });
 
 

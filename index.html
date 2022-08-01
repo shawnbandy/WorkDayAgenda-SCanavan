@@ -21,6 +21,10 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" 
       rel="stylesheet"
     />
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    ></script>
     <link rel="stylesheet" href="assets/style.css" />
     <title>Work Day Scheduler</title>
   </head>
@@ -33,24 +37,9 @@
     </header>
     <div class="container">
       <!-- TODO Timeblocks go here -->
-      <ul class="time-block">
-        
-        <!--! This below is what needs to be repeated in the for loop and appended to list-->
-        <div class="row">
-          <p class="hour" style="width: 10%">test</p>
-            <input class="future" stye="width: 80%"
-            style=
-            "border: none; 
-            width: 80%; 
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            color: black;" 
-            placeholder="text">
-          </input>
-         <button class="saveBtn" style="width: 10%">test</button>
-        </div>
-      </ul>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <button id="reset">Reset Scheduler</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
