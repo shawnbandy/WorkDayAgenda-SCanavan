@@ -1,8 +1,8 @@
 # WorkDayAgenda-SCanavan
 
 Goals of the Assignment: 
-1. Current Day is displayed on top of the agenda 
-2. Time blocks are present for stardard business hours, 9-5
+1. Display current day on top of the agenda 
+2. Present time blocks for stardard business hours, 9-5
 3. Time blocks are color coded depending on the current time (green, gray, red for future, present, past)
 4. Time block text can be edited to enter events
 5. A save function works for each individual time block, and saved text persists through refresh
