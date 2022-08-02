@@ -26,16 +26,14 @@
 
 var dt = new Date();
 
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
 var time = dt.getHours();
+
+var timerMoment = moment();
 
 
 var timeDisplay = $("#currentDay");
-timeDisplay.text(months[dt.getMonth()] + " " + dt.getDate());
-
-
-
+// timeDisplay.text(months[dt.getMonth()] + " " + dt.getDate());
+timeDisplay.text(timerMoment.format("MMM DD, YYYY"))
 
 var containerEl = $(".container");
 
